@@ -1,0 +1,443 @@
+\documentclass[
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão apenas em um lado do papel
+	a4paper,			% tamanho do papel.
+	brazil				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% Pacotes básicos
+% ---
+
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\setlength{\parindent}{1.5cm}   % Espaçamento de 1,5cm do parágrafo
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{lipsum}				% para geração de dummy text
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+\usepackage[table,xcdraw]{xcolor}% Cédula colorida em tabelas
+\usepackage{pdflscape}          % Rotaciona página
+% \usepackage{Capa}               % Capa e folha de rosto com as modificações da Suely
+
+\usepackage{amsmath, amssymb, amsthm}
+
+% -----------------------------------------------------------------------
+\renewcommand{\imprimircapa}{%
+  \begin{capa}%
+    \center
+    \ABNTEXchapterfont\Large \imprimirinstituicao \\
+    \vspace*{1cm}
+    {\ABNTEXchapterfont\large\imprimirautor}
+    \vfill
+    \ABNTEXchapterfont\bfseries\LARGE\imprimirtitulo
+    \vfill
+    \large\imprimirlocal
+    \par
+    \large\imprimirdata
+    \vspace*{1cm}
+  \end{capa}
+}
+
+
+\makeatletter
+\renewcommand{\folhaderostocontent}{
+  \begin{center}
+    {\ABNTEXchapterfont\large\imprimirautor}
+    \vspace*{\fill}\vspace*{\fill}
+    \begin{center}
+      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+    \end{center}
+    \vspace*{\fill}
+    \abntex@ifnotempty{\imprimirpreambulo}{%
+      \hspace{.45\textwidth}
+      \begin{minipage}{.5\textwidth}
+        \SingleSpacing
+        \imprimirpreambulo \hfill
+      \end{minipage}%
+      \vspace{0.5cm}
+
+      \hspace{.45\textwidth}
+      \begin{minipage}{.5\textwidth}
+        \imprimirorientadorRotulo~\imprimirorientador \hfill
+      \end{minipage}%
+      \vspace*{\fill}
+    }%
+    \vfill
+    {\large\imprimirlocal}
+    \par
+    {\large\imprimirdata}
+    \vspace*{1cm}
+  \end{center}
+}
+\makeatother
+%-----------------------------------------------------------------------
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+
+
+% ---
+% Dados dos documento
+% ---
+
+\titulo{Trabalho de Análise de Dados e Comunicação}
+% \autor{Nome Aluno 1 \\ Nome Aluno 2}
+\autor{João Victor Pietchaki Gonçalves \\ Nome do Aluno 2}
+\data{2024}
+\instituicao{Universidade Federal do Paraná
+             \par
+             Setor de Ciências Exatas
+             \par
+             Departamento de Estatística
+%             \par
+%             Curso de Estatística
+            }
+\local{Curitiba}
+\orientador[Orientador(a):]{Nome do orientador(a)}
+\preambulo{Projeto de Pesquisa apresentado à disciplina Laboratório A do Curso de Graduação em Estatística da
+           Universidade Federal do Paraná, como requisito para elaboração do Trabalho de Conclusão de Curso.}
+
+% ---
+% Configurações básicas
+% ---
+
+% informações do PDF
+
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title},
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=black,          	% color of internal links
+    	citecolor=black,            % color of links to bibliography
+    	filecolor=magenta,      	% color of file links
+		urlcolor=black,
+		bookmarksdepth=4
+}
+\makeatother
+
+\setlength\afterchapskip{\lineskip}
+
+% ----
+% Início do documento
+% ----
+
+\begin{document}
+\frenchspacing     % Retira espaço extra obsoleto entre as frases.
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% ---
+\imprimirfolhaderosto
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\tableofcontents*
+\cleardoublepage
+% ---
+
+\makepagestyle{abntheadings}
+\makeevenhead{abntheadings}{\ABNTEXfontereduzida\thepage}{}{}
+\makeoddhead{abntheadings}{}{}{\ABNTEXfontereduzida\thepage}
+\makeheadrule{abntheadings}{\textwidth}{0in}
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+\chapter{Introdução}\label{introduuxe7uxe3o}
+
+\bigskip
+
+Digite a introdução do projeto.
+
+Para citar referências, basta usar a sintaxe \texttt{\textbackslash{}cite\{key\}} para citação
+indireta, ou \texttt{\textbackslash{}citeonline\{key\}} para citação direta, onde \texttt{key} é a
+chave para a referência.
+
+Por exemplo, podemos citar no texto, segundo \citeonline{kaplan}. No
+entanto, podemos deixar para fazer a citação no final da frase
+\cite{Casella-Berger2011}.
+
+Algumas outras referências são \citeonline{Wilks1962} e
+\citeonline{Mood1974}.
+
+O principal resultado do projeto é obter um gráfico tão impressionante
+quanto aquele que está representado na Figura \ref{fig:disp}. Note que,
+para figuras, o label do chunk vira a referência. Aqui esse label é
+\texttt{disp}, portanto, a referência para a figura fica \texttt{fig:disp}, e usamos
+\texttt{\textbackslash{}@ref(fig:disp)}. Outra coisa importante é que, para isso funcionar, é
+necessário obrigatoriamente especificar uma legenda nas próprias opções
+do chunk, com a opção \texttt{fig.cap}.
+
+\begin{figure}[!h]
+
+{\centering \includegraphics[width=0.8\linewidth]{C:/Users/joaov/Downloads/CE302-Data-Analysis-And-Communication/03_results/031_report/Data-Analysis-Report_files/figure-latex/disp-1} 
+
+}
+
+\caption{Uma legenda para esse gráfico.}\label{fig:disp}
+\end{figure}
+
+Uma figura externa também pode ser incluída. Nesse caso, a melhor opção
+é usar a função \texttt{include\_graphics()} do \textbf{knitr}, e controlar a
+aparência com as opções do chunk. Veja um exemplo na Figura
+\ref{fig:leg}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.1\linewidth]{logo/leg} 
+
+}
+
+\caption{O logo do LEG.}\label{fig:leg}
+\end{figure}
+
+Também é possível incluir códigos, se for necessário. Veja no próximo
+parágrafo como isso funciona.
+
+Uma descrição da base de dados \texttt{iris} pode ser obtida com a função
+\texttt{summary()}, que faz um resumo estatístico todas as variáveis presentes
+em um objeto da classe \texttt{data.frame}. Veja o resultado da chamada dessa
+função abaixo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width          Species  
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100   setosa    :50  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300   versicolor:50  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300   virginica :50  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199                  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800                  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500
+\end{verbatim}
+
+\chapter{Objetivos}\label{objetivos}
+
+\bigskip
+
+\section{Objetivos Gerais}\label{objetivos-gerais}
+
+Analisar os dados do \ldots{}
+
+\section{Objetivos Específicos}\label{objetivos-especuxedficos}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Identificar \ldots{}
+\item
+  Estudar \ldots{}
+\item
+  Discutir \ldots{}
+\end{enumerate}
+
+\chapter{Material e Métodos}\label{material-e-muxe9todos}
+
+\bigskip
+
+\section{Material}\label{material}
+
+Descrever os dados e softwares a serem utilizados para a análise dos
+dados.
+
+Os dados podem ser apresentados em uma tabela, que pode ser
+referenciada. Por exemplo, veja a Tabela \ref{tab:dados}.
+
+\begin{table}[ht]
+\centering
+\caption{Uma legenda para essa tabela com \textbf{xtable}.} 
+\label{tab:dados}
+\begin{tabular}{rrrrl}
+  \hline
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species \\ 
+  \hline
+5.10 & 3.50 & 1.40 & 0.20 & setosa \\ 
+  4.90 & 3.00 & 1.40 & 0.20 & setosa \\ 
+  4.70 & 3.20 & 1.30 & 0.20 & setosa \\ 
+  4.60 & 3.10 & 1.50 & 0.20 & setosa \\ 
+  5.00 & 3.60 & 1.40 & 0.20 & setosa \\ 
+  5.40 & 3.90 & 1.70 & 0.40 & setosa \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+Note que a tabela acima foi gerada usando o pacote \textbf{xtable}
+\cite{xtable}, que funciona bem para \LaTeX{}, mas pode não ser portável
+caso queira utilizar o mesmo texto em uma página HTML, por exemplo. Por
+isso, a mesma tabela pode também ser gerada pela função
+\texttt{knitr::kable()}. Note que agora, o \emph{label} de referência é o próprio
+nome do chunk, com o prefixo \texttt{tab:}, veja Tabela \ref{tab:dados2}. Para
+mais opções de tabelas, consulte o pacote \textbf{kableExtra} \cite{kableExtra}.
+
+\begin{table}
+
+\caption{\label{tab:dados2}Uma legenda para essa tabela com \textbf{kable}.}
+\centering
+\begin{tabular}[t]{r|r|r|r|l}
+\hline
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
+\hline
+5.1 & 3.5 & 1.4 & 0.2 & setosa\\
+\hline
+4.9 & 3.0 & 1.4 & 0.2 & setosa\\
+\hline
+4.7 & 3.2 & 1.3 & 0.2 & setosa\\
+\hline
+4.6 & 3.1 & 1.5 & 0.2 & setosa\\
+\hline
+5.0 & 3.6 & 1.4 & 0.2 & setosa\\
+\hline
+5.4 & 3.9 & 1.7 & 0.4 & setosa\\
+\hline
+\end{tabular}
+\end{table}
+
+Evite dizer que uma tabela está ``abaixo'' ou ``acima''. Aqui, por exemplo,
+a tabela está abaixo do parágrafo, mas no documento compilado ela
+aparece depois de outro parágrafo.
+
+Esse é mais um texto só para empurrar a próxima sessão para baixo.
+Aproveito para citar mais um artigo de \citeonline{Bonat2018}, e outro
+no final do parágrafo \cite{OHara2009}.
+
+\section{Métodos}\label{muxe9todos}
+
+Descrever os métodos que pretende utilizar. Tente ser objetivo, focando
+no método específico que irá utilizar. Uma descrição geral do método
+deve ser incluida na introdução, como revisão de literatura.
+
+Equações matemáticas funcionam normalmente com a sintaxe do \LaTeX{},
+como por exemplo
+
+\begin{equation*}
+P(X = x) = \frac{e^{-\lambda} \lambda^x}{x!},
+  \quad x = 0, 1, 2, \ldots .
+\end{equation*}
+
+As equações também podem ser referenciadas no texto, bastando adicionar
+um label no formato \texttt{(\textbackslash{}\#eq:binom)}, como por exemplo
+
+\begin{equation}
+f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}.
+\label{eq:binom}
+\end{equation}
+
+Para referenciar a equação \eqref{eq:binom}, use \texttt{\textbackslash{}@ref(eq:binom)}.
+
+Existem várias opções de ambientes, inclusive para definições, teoremas
+e provas. Veja a página do Bookdown\footnote{\url{https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html\#equations}}.
+
+\begin{landscape}
+\chapter{Cronograma de atividades}
+\bigskip
+
+
+% \begin{landscape}    % página na orientação paisagem
+
+\begin{table}[h]
+\begin{tabular}{lllllll}
+\hline
+ & \textbf{ATIVIDADES} & \textbf{02/2016} & \textbf{03/2016} & \textbf{04/2016} & \textbf{05/2016} & \textbf{06/2016} \\ \hline
+\textbf{1} & \textbf{Projeto de Pesquisa} &  &  &  &  &  \\
+ & Entrega da versão final do Projeto de Pesquisa ao orientador & \cellcolor[HTML]{C0C0C0}{\color[HTML]{C0C0C0} } &  &  &  &  \\
+\textbf{2} & \textbf{Elaboração do Trabalho de Conclusão de Curso} &  &  &  &  &  \\
+ & Revisão de literatura sobre o tema & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} &  &  &  \\
+ & Análise dos dados e discussão dos resultados obtidos &  & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} &  \\
+ & Redação do trabalho de conclusão de curso &  &  & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} &  \\
+ & Leitura do trabalho pelo orientador e correções &  &  &  & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} \\
+ & Entrega do trabalho redigido aos membros da banca &  &  &  &  & \cellcolor[HTML]{C0C0C0} \\
+\textbf{3} & \textbf{Defesa do Trabalho de Conclusão de Curso} &  &  &  &  &  \\
+ & Preparação e apresentação do trabalho de conclusão de curso &  &  &  &  & \cellcolor[HTML]{C0C0C0} \\
+\textbf{4} & \textbf{Elaboração da Versão Final do Trabalho de Conclusão de Curso} &  &  &  &  &  \\
+ & Elaboração da versão final do TCC &  &  &  &  & \cellcolor[HTML]{C0C0C0} \\
+ & Entrega da versão final do trabalho ao orientador &  &  &  &  & \cellcolor[HTML]{C0C0C0} \\ \hline
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\setlength{\afterchapskip}{\baselineskip}
+\bibliography{bib/ref.bib}
+
+\postextual
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+
+% \setlength{\afterchapskip}{\baselineskip}
+% \bibliography{}
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+% \postextual
+% ----------------------------------------------------------
+
+
+\end{document}
